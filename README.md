@@ -1,2 +1,1 @@
-# BFS-DFS
-AI
+# AI codes
