@@ -1,0 +1,45 @@
+def job_scheduling():
+    n = int(input("Enter the number of jobs: "))
+    jobs = []
+    for i in range(n):
+        name = input(f"Enter the name of job {i + 1}: ")
+        deadline = int(input(f"Enter the deadline for job {i + 1}: "))
+        profit = int(input(f"Enter the profit for job {i + 1}: "))
+        jobs.append((name, deadline, profit))
+    jobs.sort(key=lambda x: x[2], reverse=True)  #Sorts the profit in descending order
+    
+    schedule = [False] * (max(jobs, key=lambda x: x[1])[1] + 1)
+    total_profit = 0
+    job_sequence = []
+    
+    for job in jobs:
+        for i in range(job[1], 0, -1):
+            if not schedule[i]:
+                schedule[i] = True
+                total_profit += job[2]
+                job_sequence.append(job[0])
+                break
+    
+    print("Job sequence:", " -> ".join(job_sequence))
+    print("Total profit:", total_profit)
+
+job_scheduling()
+
+
+#selection sort
+def selectionSort(array):
+    size = len(array) 
+    for step in range(size):
+        min_idx = step
+        for i in range(step + 1, size):
+            if array[i] < array[min_idx]:
+                min_idx = i
+                array[step], array[min_idx] = array[min_idx], array[step]
+data = []
+num_elements = int(input("Enter the number of elements: "))
+for i in range(num_elements):
+    element = int(input(f"Enter element {i+1}: "))
+    data.append(element)
+selectionSort(data)
+print('Sorted Array in Ascending Order:')
+print(data)
